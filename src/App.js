@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { ComboBox } from '@carbon/react';
 import './App.css';
 
+const theData = [
+  {id:"1",name: "fahad"},
+  {id:"2",name: "kinene"},
+  {id:"3",name: "dhodi"}
+]
+
 function App() {
+  const theInputOnChangeFunc = (e) =>{
+    console.log("theInputOnChangeFunc")
+    console.log(e.selectedItem)
+  }
+  const theOnChangeFunc = (e) =>{
+    console.log("theOnChangeFunc")
+    if(Boolean(e.selectedItem)){
+      console.log(e.selectedItem.id)
+    }else{
+      console.log("error")
+    }
+       
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ComboBox 
+        id="1"
+        items={theData} 
+        // onInputChange={(event)=>{theInputOnChangeFunc(event)}}
+        itemToString={(item)=>item?.name??''}
+        onChange={(e)=>{theOnChangeFunc(e)}}
+        titleText="Hi"
+      />
     </div>
   );
 }
